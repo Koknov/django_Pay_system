@@ -1,0 +1,18 @@
+[Unit]
+Description=DjangoPayment daemon
+After=network.target
+
+[Service]
+Type=simple
+DynamicUser=true
+StateDirectory=djangopayments/data
+WorkingDirectory=/var/lib/djangopayments
+ExecStart=/var/lib/djangopayments/venv/bin/gunicorn \
+          --bind 0.0.0.0:8000 \
+          --access-logfile - \
+          djangoProjectPaySystem.wsgi
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+
+[Install]
+WantedBy=multi-user.target
