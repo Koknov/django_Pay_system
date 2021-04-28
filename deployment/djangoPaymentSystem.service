@@ -7,7 +7,7 @@ Type=simple
 DynamicUser=true
 StateDirectory=djangopayments/data
 WorkingDirectory=/var/lib/djangopayments
-ExecStart=/var/lib/djangopayments/venv/bin/gunicorn \
+ExecStart=/var/lib/djangopaysystem/venv/bin/gunicorn \
           --bind 0.0.0.0:8000 \
           --access-logfile - \
           djangoProjectPaySystem.wsgi

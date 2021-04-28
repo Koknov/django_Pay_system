@@ -1,0 +1,26 @@
+[Unit]
+Description=DjangoPaySystem daemon
+After=network.target
+
+[Service]
+Type=simple
+DynamicUser=true
+StateDirectory=djangopaysystem/data
+CacheDirectory=djangopaysystem
+WorkingDirectory=/var/lib/djangopaysystem
+ExecStartPre=+/usr/bin/chown -R $USER \
+             /var/cache/djangopaysystem/cert.pem \
+             /var/cache/djangopaysystem/key.pem \
+             /var/cache/djangopaysystem/cacert.pem
+ExecStart=/var/lib/djangopaysystem/venv/bin/gunicorn \
+          --certfile=/var/cache/djangopaysystem/cert.pem \
+          --keyfile=/var/cache/djangopaysystem/key.pem \
+          --ca-cert=/var/cache/djangopaysystem/cacert.pem \
+          --bind 0.0.0.0:8001 \
+          --access-logfile - \
+          djangoProjectPaySystem.wsgi
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+
+[Install]
+WantedBy=multi-user.target

@@ -7,4 +7,4 @@ whitenoise
 django-rest-swagger
 drf_yasg
 PyJWT~=2.0.1
-djangorestframework-jwt
+djangorestframework-simplejwt
