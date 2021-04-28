@@ -119,11 +119,6 @@ class RegistrationAPIView(APIView):
     renderer_classes = (UserJSONRenderer,)
     serializer_class = RegistrationSerializer
 
-    def get(self, request):
-        messages = Users.objects.all()
-        serializer = RegistrationSerializer(messages, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
     @swagger_auto_schema(request_body=RegistrationSerializer)
     def post(self, request):
         user = request.data
