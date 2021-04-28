@@ -9,7 +9,7 @@ class UserManager(BaseUserManager):
     def create_user(self, username, password=None):
         if username is None:
             raise TypeError('Users must have a username.')
-        user = self.model(username=username, email=self.normalize_email(email))
+        user = self.model(username=username)
         user.set_password(password)
         user.save()
 
