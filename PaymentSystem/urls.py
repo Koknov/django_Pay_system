@@ -1,7 +1,7 @@
 from django.urls import path, re_path
 
 from rest_framework.routers import DefaultRouter
-from rest_framework_simplejwt import views as jwt_views
+from rest_framework_simplejwt import views
 
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
@@ -39,6 +39,6 @@ urlpatterns = router.urls + [
     path('users/', UsersView.as_view()),
     path('transactions/', TransactionsView.as_view()),
     path('registration/', RegistrationAPIView.as_view()),
-    path('login/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('login/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
+    path('login/', views.TokenObtainPairView.as_view()),
+    path('login/refresh/', views.TokenRefreshView.as_view()),
 ]
