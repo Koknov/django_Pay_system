@@ -10,7 +10,7 @@ class UsersSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Users
-        fields = ('wallet_number', 'username', 'total', 'token')
+        fields = ('wallet_number', 'username', 'total')
         read_only_fields = ('wallet_number',)
 
 
